@@ -27,6 +27,7 @@ const passGen = (len ) => {
 
 function App() {
   const [password, setPassword] = useState()
+  const [isCopied, setIsCopied] = useState()
   
   useEffect(() => {
     setPassword(passGen(32));
@@ -34,8 +35,12 @@ function App() {
   
   return (
     <div className="App">
-     <header className="App-header">
+     <header className="App-header" onClick={() => {
+      navigator.clipboard.writeText(password);
+      setIsCopied(true)
+     } }>
      {password}
+      {isCopied && <p style={{color: "#61666d"}}>copied!</p>}
       </header>
     </div>
   );
